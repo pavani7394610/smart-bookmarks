@@ -1,36 +1,64 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Smart Bookmarks
 
-## Getting Started
+A simple Next.js application that lets users save and view bookmarks using Supabase as the backend.
 
-First, run the development server:
+ Live Demo
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+https://smart-bookmarks-five-iota.vercel.app
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+GitHub Repository
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+https://github.com/pavani7394610/smart-bookmarks
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Features
 
-## Learn More
+Add bookmarks (title + URL)
 
-To learn more about Next.js, take a look at the following resources:
+Save data securely to Supabase
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+View your saved bookmarks
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Fully deployed on Vercel
 
-## Deploy on Vercel
+Tech Stack
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Next.js
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Supabase (Database + Auth-ready environment)
+
+React
+
+TypeScript
+
+Hosted on Vercel
+
+What Problems I Faced & How I Solved Them
+1. Module not found (@/lib/supabaseClient)
+
+At first, Next.js couldn’t find my Supabase client file.
+This happened because my folder alias (@/) was not set up
+After restarting the dev server, the error was gone.
+
+2. Supabase keys missing (supabaseUrl is required)
+
+My local development kept failing because environment variables weren’t loading.
+
+ Fix:
+Created a .env.local file and added
+
+Supabase uses Row Level Security, so To save my bookmarks first.
+
+I need proper policies for INSERT and SELECT.
+
+Fix:
+Added simple policies allowing public access
+
+Deployment failing on Vercel (supabase URL missing)
+
+When deploying, Vercel showed a build error because environment variables were not added
+Vercel requires you to manually add them
+ Fix:
+Added both Supabase variables under:
+Vercel → Project → Settings → Environment Variables
+
+Re-deployed → succeeded
